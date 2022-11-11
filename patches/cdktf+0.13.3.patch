@@ -1,0 +1,33 @@
+diff --git a/node_modules/cdktf/lib/terraform-stack.js b/node_modules/cdktf/lib/terraform-stack.js
+index a68621e..3808a83 100644
+--- a/node_modules/cdktf/lib/terraform-stack.js
++++ b/node_modules/cdktf/lib/terraform-stack.js
+@@ -133,8 +133,8 @@ class TerraformStack extends constructs_1.Construct {
+      * @param tfElement The element for which the logical ID is allocated.
+      */
+     allocateLogicalId(tfElement) {
+-        const node = tfElement instanceof terraform_element_1.TerraformElement ? tfElement.node : tfElement;
+-        const stack = tfElement instanceof terraform_element_1.TerraformElement ? tfElement.cdktfStack : this;
++        const node = tfElement.node || tfElement;
++        const stack = tfElement.cdktfStack || this;
+         let stackIndex;
+         if (node.tryGetContext(features_1.EXCLUDE_STACK_ID_FROM_LOGICAL_IDS)) {
+             stackIndex = node.scopes.indexOf(stack);
+@@ -148,7 +148,7 @@ class TerraformStack extends constructs_1.Construct {
+             : "";
+     }
+     allProviders() {
+-        return this.findAll({ byConstructor: terraform_provider_1.TerraformProvider });
++        return this.findAll({ byPredicate: (item) => !!item.terraformResourceType });
+     }
+     ensureBackendExists() {
+         const backends = this.findAll({
+@@ -247,7 +247,7 @@ _a = JSII_RTTI_SYMBOL_1;
+ TerraformStack[_a] = { fqn: "cdktf.TerraformStack", version: "0.13.3" };
+ // eslint-disable-next-line jsdoc/require-jsdoc
+ function terraformElements(node, into = []) {
+-    if (node instanceof terraform_element_1.TerraformElement) {
++    if (node.cdktfStack) {
+         into.push(node);
+     }
+     for (const child of node.node.children) {

@@ -1,0 +1,48 @@
+{
+  "name": "cdktf-web",
+  "version": "1.0.0",
+  "description": "cdktf and its major providers for browsers",
+  "main": "dist/bundle.cdktf.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "install": "patch-package",
+    "build": "webpack --progress --env production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3p3r/cdktf-web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/3p3r/cdktf-web/issues"
+  },
+  "homepage": "https://github.com/3p3r/cdktf-web#readme",
+  "devDependencies": {
+    "@cdktf/provider-aws": "^10.0.11",
+    "@cdktf/provider-azurerm": "^3.0.16",
+    "@cdktf/provider-google": "^3.0.16",
+    "assert": "^2.0.0",
+    "buffer": "^6.0.3",
+    "cdktf": "^0.13.3",
+    "console-browserify": "^1.2.0",
+    "constructs": "^10.1.156",
+    "crypto-browserify": "^3.12.0",
+    "memfs": "^3.4.10",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "terser-webpack-plugin": "^5.3.6",
+    "url": "^0.11.0",
+    "util": "^0.12.5",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "patch-package": "^6.5.0"
+  }
+}
